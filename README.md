@@ -24,7 +24,7 @@ O sistema tem como objetivo oferecer funcionalidades para o gerenciamento de inf
 * Hibernate
 * MySQL
 * Thymeleaf
-* HTML e CSS
+* HTML
 * Maven
 
 ## Arquitetura e conceitos
@@ -48,10 +48,11 @@ O projeto utiliza conceitos de:
 
 ### Configuração
 
-1. Clone o repositório.
-2. Configure o banco de dados MySQL.
-3. Ajuste as configurações de conexão do banco de dados na aplicação.
-4. Execute o projeto utilizando o Maven ou a IDE.
+1. Coloque o MySQL do XAMPP rodando (porta padrão 3306).
+2. Crie um banco (ex: rh_spring) ou use a configuração padrão (rh_spring).
+3. Ajuste username/password em src/main/resources/application.properties se necessário.
+4. No terminal, dentro da pasta do projeto: mvn clean package mvn spring-boot:run
+5. Acesse: http://localhost:8080/funcionarios/listar http://localhost:8080/cargos/listar http://localhost:8080/departamentos/listar
 
 ### Execução
 
