@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Funcionários</title>
+</head>
+<div th:if="${erro}" style="color:red;">
+    <p th:text="${erro}"></p>
+</div>
+
+<body>
+    <h1>Funcionários</h1>
+
+    <a href="/funcionarios/cadastrar">Cadastrar novo</a> |
+    <a href="/cargos/listar">Cargos</a> |
+    <a href="/departamentos/listar">Departamentos</a>
+
+    <form action="/funcionarios/listar" method="get">
+        Filtrar por departamento:
+        <select name="departamentoId">
+            <option value="">--</option>
+            <option th:each="d : ${departamentos}" th:value="${d.id}" th:text="${d.nome}"></option>
+        </select>
+        Cargo:
+        <select name="cargoId">
+            <option value="">--</option>
+            <option th:each="c : ${cargos}" th:value="${c.id}" th:text="${c.nome}"></option>
+        </select>
+        Chefe:
+        <select name="chefeId">
+            <option value="">--</option>
+            <option th:each="ch : ${chefes}" th:value="${ch.id}" th:text="${ch.nome}"></option>
+        </select>
+        <input type="submit" value="Filtrar" />
+    </form>
+	<form action="/funcionarios/procurar" method="get">
+	    <input type="text" name="nome" placeholder="Buscar funcionário" 
+	           th:value="${busca}">
+	    <button type="submit">Buscar</button>
+	</form>
+	<br/>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome</th><th>CPF</th><th>Email</th><th>Departamento</th><th>Cargo</th><th>Chefe</th><th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="f : ${funcionarios}">
+                <td th:text="${f.nome}">Nome</td>
+                <td th:text="${f.cpf}">CPF</td>
+                <td th:text="${f.email}">Email</td>
+                <td th:text="${f.departamento != null ? f.departamento.nome : ''}">Dept</td>
+                <td th:text="${f.cargo != null ? f.cargo.nome : ''}">Cargo</td>
+                <td th:text="${f.chefe != null ? f.chefe.nome : ''}">Chefe</td>
+                <td>
+                    <a th:href="@{/funcionarios/editar(id=${f.id})}">Editar</a> |
+                    <a th:href="@{/funcionarios/excluir(id=${f.id})}">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

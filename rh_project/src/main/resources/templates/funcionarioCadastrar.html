@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastrar Funcionário</title>
+</head>
+<body>
+    <h1>Cadastrar Funcionário</h1>
+
+    <div th:if="${erro}" style="color:red;">
+        <p th:text="${erro}"></p>
+    </div>
+
+    <form action="/funcionarios/cadastrar" method="post">
+        Nome: <input type="text" name="nome" th:value="${funcionario.nome}" /><br/>
+
+        CPF: <input type="text" name="cpf" th:value="${funcionario.cpf}" /><br/>
+
+        Email: <input type="text" name="email" th:value="${funcionario.email}" /><br/>
+
+        Data Contratação:
+        <input type="date" name="dataContratacao" 
+               th:value="${#dates.format(funcionario.dataContratacao, 'yyyy-MM-dd')}" /><br/>
+
+        Salário:
+        <input type="number" step="0.01" name="salario" th:value="${funcionario.salario}" /><br/>
+
+        Departamento:
+        <select name="departamento.id">
+            <option value="">--</option>
+            <option th:each="d : ${departamentos}"
+                    th:value="${d.id}"
+                    th:text="${d.nome}">
+            </option>
+        </select><br/>
+
+        Cargo:
+        <select name="cargo.id">
+            <option value="">--</option>
+            <option th:each="c : ${cargos}"
+                    th:value="${c.id}"
+                    th:text="${c.nome}">
+            </option>
+        </select><br/>
+
+        Chefe:
+        <!-- Agora enviando *chefeId* em vez de chefe.id -->
+        <select name="chefeId">
+            <option value="">-- Nenhum --</option>
+            <option th:each="ch : ${chefes}"
+                    th:value="${ch.id}"
+                    th:text="${ch.nome}">
+            </option>
+        </select><br/>
+
+        <input type="submit" value="Salvar" />
+    </form>
+
+    <a href="/funcionarios/listar">Voltar</a>
+</body>
+</html>

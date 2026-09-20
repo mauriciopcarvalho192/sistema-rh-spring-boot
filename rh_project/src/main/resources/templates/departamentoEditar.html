@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Editar Departamento</title></head>
+<body>
+    <h1>Editar Departamento</h1>
+    <form action="/departamentos/editar" method="post">
+        <input type="hidden" name="id" th:value="${departamento.id}" />
+        Nome: <input type="text" name="nome" th:value="${departamento.nome}" /><br/>
+        Descrição: <input type="text" name="descricao" th:value="${departamento.descricao}" /><br/>
+        <input type="submit" value="Salvar" />
+    </form>
+    <a href="/departamentos/listar">Voltar</a>
+</body>
+</html>

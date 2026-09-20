@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Cadastrar Departamento</title></head>
+<body>
+    <h1>Cadastrar Departamento</h1>
+    <form action="/departamentos/cadastrar" method="post">
+        Nome: <input type="text" name="nome" /><br/>
+        Descrição: <input type="text" name="descricao" /><br/>
+        <input type="submit" value="Salvar" />
+    </form>
+    <a href="/departamentos/listar">Voltar</a>
+</body>
+</html>

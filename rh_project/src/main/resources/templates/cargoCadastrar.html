@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Cadastrar Cargo</title></head>
+<body>
+    <h1>Cadastrar Cargo</h1>
+    <form action="/cargos/cadastrar" method="post">
+        Nome: <input type="text" name="nome" /><br/>
+        Descrição: <input type="text" name="descricao" /><br/>
+        <input type="submit" value="Salvar" />
+    </form>
+    <a href="/cargos/listar">Voltar</a>
+</body>
+</html>

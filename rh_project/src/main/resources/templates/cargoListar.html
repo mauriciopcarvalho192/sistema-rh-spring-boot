@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Cargos</title></head>
+<div th:if="${erro}" style="color:red;">
+    <p th:text="${erro}"></p>
+</div>
+
+<body>
+    <h1>Cargos</h1>
+    <a href="/cargos/cadastrar">Cadastrar cargo</a> | <a href="/funcionarios/listar">Funcionários</a>
+	<form action="/cargos/procurar" method="get">
+	    <input type="text" name="nome" placeholder="Buscar cargo"
+	           th:value="${busca}">
+	    <button type="submit">Buscar</button>
+	</form>
+	<br/>
+
+	<table border="1">
+        <thead><tr><th>Nome</th><th>Descrição</th><th>Ações</th></tr></thead>
+        <tbody>
+            <tr th:each="c: ${cargos}">
+                <td th:text="${c.nome}"></td>
+                <td th:text="${c.descricao}"></td>
+                <td>
+                    <a th:href="@{/cargos/editar(id=${c.id})}">Editar</a> |
+                    <a th:href="@{/cargos/excluir(id=${c.id})}">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
